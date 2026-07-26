@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import validates
+from sqlalchemy.ext.associationproxy import association_proxy
 
 db = SQLAlchemy()
 
@@ -14,6 +15,7 @@ class Exercise(db.Model):
     equipment_needed = db.Column(db.Boolean, default=False)
 
     workout_exercises = db.relationship('WorkoutExercises', back_populates='exercise', cascade='all, delete-orphan')
+    workouts = association_proxy('workout_exercises', 'workout')
 
 
 class Workout(db.Model):
@@ -25,6 +27,7 @@ class Workout(db.Model):
     notes = db.Column(db.Text)
 
     workout_exercises = db.relationship('WorkoutExercises', back_populates='workout', cascade='all, delete-orphan')
+    exercises = association_proxy('workout_exercises', 'exercise')
 
 
 class WorkoutExercises(db.Model):
