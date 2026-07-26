@@ -11,39 +11,53 @@ db.init_app(app)
 
 
 # Routes
+
+# Workouts 
 @app.get("/workouts")
 def get_all_workouts():
-    return
+    # return all workouts
+    return {}, 501
 
-@app.get("/workouts/<id>")
+@app.get("/workouts/<int:id>")
 def get_specific_workout(id):
-    return
-
-
-@app.get("/exercises")
-def get_all_exercises():
-    return
-
-@app.get("/exercises/<id>")
-def get_specific_exercise(id):
-    return
-
+    return {}, 501
 
 @app.post("/workouts")
 def create_workout():
-    return
+    return {}, 501
+
+@app.delete("/workouts/<int:id>")
+def delete_workout(id):
+    return {}, 501
+
+
+# Exercises
+@app.get("/exercises")
+def get_all_exercises():
+    # gets all exercises
+    return {}, 501
+
+@app.get("/exercises/<int:id>")
+def get_specific_exercise(id):
+    # returns a specific exercise
+    return {}, 501
 
 @app.post("/exercises")
 def create_exercise():
-    return
+    # creates an exercise
+    return {}, 501
 
-@app.delete("/workouts/<id>")
-def delete_workout(id):
-    return
-
-@app.delete("/exercises/<id>")
+@app.delete("/exercises/<int:id>")
 def delete_exercise(id):
-    return
+    # delete specific WorkoutExercises
+    return {}, 501
+
+
+# WorkoutExercises
+@app.post("/workouts/<int:workout_id>/exercises/<int:exercise_id>/workout_exercises")
+def create_workout_exercise(workout_id, exercise_id):
+    # add an exercise to a workout with reps/sets/duration
+    return {}, 501
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
